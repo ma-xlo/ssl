@@ -39,7 +39,7 @@ int main() {
             cout << " |           |                  |            |" << endl;
             cout << " |           +------------------+            |" << endl;
             cout << " |                                           |" << endl;
-            cout << " |                                versão 1.0 |" << endl;
+            cout << " |                                           |" << endl;
             cout << " +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+" << endl;
             cout << "\n\t\t  Opção: ";
             _flushall();
@@ -199,11 +199,14 @@ void imprimeSistema2 (float matriz[2][4], int opcao)
     for(int i = 0; i < opcao + 1; i++) {
         cout << "                ";
         for(int j = 0; j <= opcao + 1; j++) {
-            if (matriz[i][j] < 0)
+            if (matriz[i][j] < 0 && j != 0)
                 cout << "+ " << "(" << matriz[i][j] << coef[j] << ")" << " ";
+            else if (j == 0)
+                cout << " " << matriz[i][j] << coef[j] << " ";
+            else if (j == 0 && matriz[i][j] < 0)
+                cout << " " << matriz[i][j] << coef[j] << " ";
             else 
                 cout << "+ " << matriz[i][j] << coef[j] << " ";
-
 
             if( j == 1) {
                 cout << "= " << matriz[i][2] << endl;
@@ -272,13 +275,16 @@ void imprimeSistema3 (float matriz[3][4], int opcao)
 
     cout << endl << " +------------- Sistema inserido ------------+" << endl << endl;
     for(int i = 0; i < opcao + 1; i++) {
-        cout << "               ";
+        cout << "              ";
         for(int j = 0; j <= opcao + 1; j++) {
-            if (matriz[i][j] < 0)
+            if (matriz[i][j] < 0 && j != 0)
                 cout << "+ " << "(" << matriz[i][j] << coef[j] << ")" << " ";
+            else if (j == 0)
+                cout << " " << matriz[i][j] << coef[j] << " ";
+            else if (j == 0 && matriz[i][j] < 0)
+                cout << " " << matriz[i][j] << coef[j] << " ";
             else 
                 cout << "+ " << matriz[i][j] << coef[j] << " ";
-
 
             if( j == 2) {
                 cout << "= " << matriz[i][3] << endl;
