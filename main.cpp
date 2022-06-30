@@ -5,13 +5,102 @@
 
 using namespace std;
 
+void preencheSistema2 (float matriz[2][4], int opcao);
+void imprimeSistema2 (float matriz[2][4], int opcao);
+void preencheSistema3 (float matriz[3][4], int opcao);
+void imprimeSistema3 (float matriz[3][4], int opcao);
+float * determinante2(float matriz[2][4]); 
+float * determinante3(float matriz[3][4]); 
+
+int main() {
+
+    setlocale(LC_ALL, "");
+
+    char tecla;
+    int opcao = 0;
+    float *det, x, y, z;
+
+    do {
+            system("cls");          
+            cout << "  +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+" << endl;
+            cout << "  |     Solucionador de Sistema Lineares      |" << endl;
+            cout << "  +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+" << endl;
+            cout << "  |                                           |" << endl;
+            cout << "  |           +====== Menu ======+            |" << endl;
+            cout << "  |           |                  |            |" << endl;
+            cout << "  |              [1] 2 Variáveis              |" << endl;
+            cout << "  |              [2] 3 Variáveis              |" << endl;
+            cout << "  |              [0] Sair                     |" << endl;
+            cout << "  |           |                  |            |" << endl;
+            cout << "  |           +------------------+            |" << endl;
+            cout << "  |                                           |" << endl;
+            cout << "  |                                versão 1.0 |" << endl;
+            cout << "  +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+" << endl;
+            cout << "\n\t\t   Opção: ";
+            _flushall();
+            cin >> opcao;
+
+            // Define o tamanho da matriz
+            float matriz[opcao + 1][4];
+
+            switch (opcao)
+            {
+                case 1:
+                    system("cls");
+                    preencheSistema2(matriz, opcao);
+                    imprimeSistema2(matriz, opcao);
+                    det = determinante2(matriz);
+
+                    x = det[1] / det[0];
+                    y = det[2] / det[0];
+
+                    cout << endl;
+                    cout << " +------------ Resultado ------------+" << endl;
+                    cout << "  Determinante: " << det[0] << endl;
+                    cout << "  Valor de x: " << x << endl;
+                    cout << "  Valor de y: " << y << endl;
+                    cout << " +-----------------------------------+" << endl;
+
+                    cout << endl << "Pressione 0 para retornar ao menu..." << endl;
+                    cin >> tecla;
+                    break;
+
+                case 2:
+                    system("cls");
+                    preencheSistema3(matriz, opcao);
+                    imprimeSistema3(matriz, opcao);
+                    det = determinante3(matriz);
+
+                    x = det[1] / det[0];
+                    y = det[2] / det[0];
+                    z = det[3] / det[0];
+
+                    cout << endl;
+                    cout << " +------------ Resultado ------------+" << endl;
+                    cout << "  Determinante: " << det[0] << endl;
+                    cout << "  Valor de x: " << x << endl;
+                    cout << "  Valor de y: " << y << endl;
+                    cout << "  Valor de z: " << z << endl;
+                    cout << " +-----------------------------------+" << endl;
+
+                    cout << endl << "Pressione enter para retornar ao menu..." << endl;
+                    
+                    cin >> tecla;
+                    break;
+                    
+                case 0: 
+                    return 0;
+            }
+    } while(opcao != 0);
+}
+
 void preencheSistema2 (float matriz[2][4], int opcao) {
     char coef[2] = {'x', 'y'}; 
 
     for(int i = 0; i < opcao + 1; i++) {
-        cout << " +- EquaÃ§Ã£o " << i+1 << " -----------------------+" << endl;
+        cout << " +- " << i+1 << "º Equação " << " -----------------------+" << endl;
         for(int j = 0; j < opcao + 1; j++) {
-            cout << "  Coeficiente da variÃ¡vel " << coef[j] << ": ";
+            cout << "  Coeficiente da variável " << coef[j] << ": ";
             //_flushall();
             cin >> matriz[i][j];
 
@@ -69,9 +158,9 @@ void preencheSistema3 (float matriz[3][4], int opcao) {
     char coef[3] = {'x', 'y', 'z'}; 
 
     for(int i = 0; i < opcao + 1; i++) {
-        cout << " +- EquaÃ§Ã£o " << i+1 << " -----------------------+" << endl;
+        cout << " +- " << i+1 << "º Equação " << " -----------------------+" << endl;
         for(int j = 0; j < opcao + 1; j++) {
-            cout << "  Coeficiente da variÃ¡vel " << coef[j] << ": ";
+            cout << "  Coeficiente da variável " << coef[j] << ": ";
             //_flushall();
             cin >> matriz[i][j];
 
@@ -135,89 +224,6 @@ float * determinante3(float matriz[3][4])
 
     return detGeral;
 }
-
-int main() {
-
-    setlocale(LC_ALL, "");
-
-    char tecla;
-    int opcao = 0;
-    float *det, x, y, z;
-
-    do {
-            system("clear");          
-            cout << "  +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+" << endl;
-            cout << "  |     Solucionador de Sistema Lineares      |" << endl;
-            cout << "  +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+" << endl;
-            cout << "  |                                           |" << endl;
-            cout << "  |           +====== Menu ======+            |" << endl;
-            cout << "  |           |                  |            |" << endl;
-            cout << "  |              [1] 2 VariÃ¡veis              |" << endl;
-            cout << "  |              [2] 3 VariÃ¡veis              |" << endl;
-            cout << "  |              [0] Sair                     |" << endl;
-            cout << "  |           |                  |            |" << endl;
-            cout << "  |           +------------------+            |" << endl;
-            cout << "  |                                           |" << endl;
-            cout << "  |                                versÃ£o 1.0 |" << endl;
-            cout << "  +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+" << endl;
-            cout << "\n\t\t   OpÃ§Ã£o: ";
-            //_flushall();
-            cin >> opcao;
-
-            // Define o tamanho da matriz
-            float matriz[opcao + 1][4];
-
-            switch (opcao)
-            {
-                case 1:
-                    system("clear");
-                    preencheSistema2(matriz, opcao);
-                    imprimeSistema2(matriz, opcao);
-                    det = determinante2(matriz);
-
-                    x = det[1] / det[0];
-                    y = det[2] / det[0];
-
-                    cout << endl;
-                    cout << " +------------ Resultado ------------+" << endl;
-                    cout << "  Determinante: " << det[0] << endl;
-                    cout << "  Valor de x: " << x << endl;
-                    cout << "  Valor de y: " << y << endl;
-                    cout << " +-----------------------------------+" << endl;
-
-                    cout << endl << "Pressione 0 para retornar ao menu..." << endl;
-                    cin >> tecla;
-                    break;
-
-                case 2:
-                    system("clear");
-                    preencheSistema3(matriz, opcao);
-                    imprimeSistema3(matriz, opcao);
-                    det = determinante3(matriz);
-
-                    x = det[1] / det[0];
-                    y = det[2] / det[0];
-                    z = det[3] / det[0];
-
-                    cout << endl;
-                    cout << " +------------ Resultado ------------+" << endl;
-                    cout << "  Determinante: " << det[0] << endl;
-                    cout << "  Valor de x: " << x << endl;
-                    cout << "  Valor de y: " << y << endl;
-                    cout << "  Valor de z: " << z << endl;
-                    cout << " +-----------------------------------+" << endl;
-
-                    cout << endl << "Pressione enter para retornar ao menu..." << endl;
-                    
-                    cin >> tecla;
-                    break;
-                    
-                case 0: 
-                    return 0;
-            }
-    } while(opcao != 0);
-}
-
 // Test case:
 // 1 2 1 0 
 // 2 -1 1 1
