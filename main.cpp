@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <ctype.h>
 #include <malloc.h>
 #include <locale.h>
 
@@ -11,6 +12,7 @@ void preencheSistema3 (float matriz[3][4], int opcao);
 void imprimeSistema3 (float matriz[3][4], int opcao);
 float * determinante2(float matriz[2][4]); 
 float * determinante3(float matriz[3][4]); 
+void pressioneEnter();
 
 int main() {
 
@@ -48,44 +50,58 @@ int main() {
                 case 1:
                     system("cls");
                     preencheSistema2(matriz, opcao);
-                    imprimeSistema2(matriz, opcao);
-                    det = determinante2(matriz);
+                    
+                    do {
 
-                    x = det[1] / det[0];
-                    y = det[2] / det[0];
+                        system("cls");
+                        imprimeSistema2(matriz, opcao);
+                        det = determinante2(matriz);
 
-                    cout << endl;
-                    cout << " +------------ Resultado ------------+" << endl;
-                    cout << "  Determinante: " << det[0] << endl;
-                    cout << "  Valor de x: " << x << endl;
-                    cout << "  Valor de y: " << y << endl;
-                    cout << " +-----------------------------------+" << endl;
+                        x = det[1] / det[0];
+                        y = det[2] / det[0];
 
-                    cout << endl << "Pressione 0 para retornar ao menu..." << endl;
-                    cin >> tecla;
+                        cout << endl;
+                        cout << " +------------ Resultado ------------+" << endl;
+                        cout << "  Determinante: " << det[0] << endl;
+                        cout << "  Valor de x: " << x << endl;
+                        cout << "  Valor de y: " << y << endl;
+                        cout << " +-----------------------------------+" << endl;
+
+                        cout << endl << "Pressione enter para retornar ao menu..." << endl;
+                        _flushall();
+                        scanf("%c", &tecla);
+
+                    } while (tecla != '\n');
+
                     break;
 
                 case 2:
                     system("cls");
                     preencheSistema3(matriz, opcao);
-                    imprimeSistema3(matriz, opcao);
-                    det = determinante3(matriz);
-
-                    x = det[1] / det[0];
-                    y = det[2] / det[0];
-                    z = det[3] / det[0];
-
-                    cout << endl;
-                    cout << " +------------ Resultado ------------+" << endl;
-                    cout << "  Determinante: " << det[0] << endl;
-                    cout << "  Valor de x: " << x << endl;
-                    cout << "  Valor de y: " << y << endl;
-                    cout << "  Valor de z: " << z << endl;
-                    cout << " +-----------------------------------+" << endl;
-
-                    cout << endl << "Pressione enter para retornar ao menu..." << endl;
                     
-                    cin >> tecla;
+                    do {
+                        system("cls");
+                        imprimeSistema3(matriz, opcao);
+                        det = determinante3(matriz);
+
+                        x = det[1] / det[0];
+                        y = det[2] / det[0];
+                        z = det[3] / det[0];
+
+                        cout << endl;
+                        cout << " +------------ Resultado ------------+" << endl;
+                        cout << "  Determinante: " << det[0] << endl;
+                        cout << "  Valor de x: " << x << endl;
+                        cout << "  Valor de y: " << y << endl;
+                        cout << "  Valor de z: " << z << endl;
+                        cout << " +-----------------------------------+" << endl;
+
+                        cout << endl << "Pressione enter para retornar ao menu..." << endl;
+                        _flushall();
+                        scanf("%c", &tecla);
+
+                    } while (tecla != '\n');
+
                     break;
                     
                 case 0: 
@@ -133,7 +149,6 @@ float * determinante2(float matriz[2][4])
 void imprimeSistema2 (float matriz[2][4], int opcao) 
 {
     char coef[2] = {'x', 'y'}; 
-    char tecla;
 
     cout << endl << " +-------- Sistema inserido ---------+" << endl;
 
@@ -155,13 +170,15 @@ void imprimeSistema2 (float matriz[2][4], int opcao)
 }
 
 void preencheSistema3 (float matriz[3][4], int opcao) {
+
     char coef[3] = {'x', 'y', 'z'}; 
 
     for(int i = 0; i < opcao + 1; i++) {
         cout << " +- " << i+1 << "º Equação " << " -----------------------+" << endl;
         for(int j = 0; j < opcao + 1; j++) {
+            
             cout << "  Coeficiente da variável " << coef[j] << ": ";
-            //_flushall();
+            _flushall();
             cin >> matriz[i][j];
 
             if( j == 2 ) {
@@ -224,7 +241,3 @@ float * determinante3(float matriz[3][4])
 
     return detGeral;
 }
-// Test case:
-// 1 2 1 0 
-// 2 -1 1 1
-// -1  3 1 -2
