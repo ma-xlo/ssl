@@ -22,28 +22,34 @@ int main() {
     setlocale(LC_ALL, "");
 
     char tecla;
-    int opcao = 0;
     float *det, x, y, z;
+    int opcao;
 
     do {
-            system("cls");          
-            cout << " +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+" << endl;
-            cout << " |     Solucionador de Sistema Lineares      |" << endl;
-            cout << " +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+" << endl;
-            cout << " |                                           |" << endl;
-            cout << " |           +====== Menu ======+            |" << endl;
-            cout << " |           |                  |            |" << endl;
-            cout << " |              [1] 2 Variáveis              |" << endl;
-            cout << " |              [2] 3 Variáveis              |" << endl;
-            cout << " |              [0] Sair                     |" << endl;
-            cout << " |           |                  |            |" << endl;
-            cout << " |           +------------------+            |" << endl;
-            cout << " |                                           |" << endl;
-            cout << " |                                           |" << endl;
-            cout << " +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+" << endl;
-            cout << "\n\t\t  Opção: ";
-            _flushall();
-            cin >> opcao;
+            do {
+                system("cls");          
+                cout << " +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+" << endl;
+                cout << " |     Solucionador de Sistema Lineares      |" << endl;
+                cout << " +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+" << endl;
+                cout << " |                                           |" << endl;
+                cout << " |           +====== Menu ======+            |" << endl;
+                cout << " |           |                  |            |" << endl;
+                cout << " |              [1] 2 Variáveis              |" << endl;
+                cout << " |              [2] 3 Variáveis              |" << endl;
+                cout << " |              [0] Sair                     |" << endl;
+                cout << " |           |                  |            |" << endl;
+                cout << " |           +------------------+            |" << endl;
+                cout << " |                                           |" << endl;
+                cout << " |                                           |" << endl;
+                cout << " +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+" << endl;
+                cout << "\n\t\t   Opção: ";
+                _flushall();
+                scanf("%d", &opcao);
+            } while(opcao < 0 || opcao > 2);
+            
+            // Fecha o programa
+            if(opcao == 0)
+                break;
 
             // Define o tamanho da matriz
             float matriz[opcao + 1][4];
@@ -110,11 +116,15 @@ int main() {
                     } while (tecla != '\n');
 
                     break;
-                    
-                case 0: 
-                    return 0;
             }
-    } while(opcao != 0);
+        
+            opcao = 0;
+
+        } while(1);
+    
+    return 0;
+
+    
 }
 
 void preencheSistema2 (float matriz[2][4], int opcao) 
@@ -197,7 +207,7 @@ void imprimeSistema2 (float matriz[2][4], int opcao)
     cout << endl << " +------------- Sistema inserido ------------+" << endl << endl;
 
     for(int i = 0; i < opcao + 1; i++) {
-        cout << "                ";
+        cout << "                 ";
         for(int j = 0; j <= opcao + 1; j++) {
             if (matriz[i][j] < 0 && j != 0)
                 cout << "+ " << "(" << matriz[i][j] << coef[j] << ")" << " ";
